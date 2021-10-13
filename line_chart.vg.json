@@ -1,0 +1,55 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Portion of Nobels Prize Won By Women",
+    "width": 300,
+    "height":300,
+    "description": "Stock prices of 5 Tech Companies over Time.",
+    "data": {"url": "./data/nobels_per_decade.csv"},
+    "params":[
+      {
+      "name": "Category_selection",
+        "bind": {
+          "input": "select",
+          "options": [
+            null,
+            "chemistry",
+            "economics",
+            "literature",
+            "medicine",
+            "peace",
+            "physics"
+            
+            
+          ],
+          "labels":[
+            "Show All",
+            "Chemistry",
+            "Economics",
+            "Literature",
+            "Medicine",
+            "Peace",
+            "Physics"
+          ],
+          "name": "Category Selection: "
+        }
+      }
+    ],
+    "transform": [
+      {"filter":"Category_selection == null || datum.category == Category_selection"},
+      {"calculate": "datum.portion * 100", "as": "Portion of Women"}
+    ],
+    "mark": {
+      "type": "line",
+      "point": true
+    },
+    "encoding": {
+      "x": {"timeUnit":"year",  "field": "decade", "type": "temporal"},
+      "y": {"field": "Portion of Women", "type": "quantitative"},
+      "color": {"field": "category", "type": "nominal"},
+      "tooltip": [
+        {"field": "decade", "type": "temporal"},
+        {"field": "Portion of Women", "type": "quantitative", "format": ","},
+        {"field": "category", "type": "nominal", "format": ","}
+      ]
+    }
+  }
