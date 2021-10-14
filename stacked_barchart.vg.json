@@ -2,15 +2,20 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": "Nobel Prizes by Category",
     "data": {"url": "./data/no_per_category.csv"},
-    "width": 300,
-    "height": 300,
+    "width": 325,
+    "height": 275,
     "mark": "bar",
     "encoding": {
       "x": {"field": "category"},
       "y": {"aggregate": "count", "field": "gender"},
       "order": {"aggregate": "count", "field": "gender", "sort": "descending"},
-      "color": {"field": "gender"}
+      "color": {"field": "gender", "legend": {"title":"Gender"}},
+      "tooltip": [
+        {"field": "gender", "type": "nominal", "title": "Gender"},
+        {"field": "y", "type": "quantitative", "title": "Number of Nobels"}
+      ]
     }
-  }
+}
+
 
   

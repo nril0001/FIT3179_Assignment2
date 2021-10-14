@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Nobel Prizes Won By Each Country (1901 - 2016)",
-  "width": 600,
-  "height": 295,
+  "width": 800,
+  "height": 395,
   "params": [
     {
       "name": "Year_selection",
@@ -23,11 +23,7 @@
         "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
       },
       "projection": {"type":"equirectangular"},
-      "mark": {"type": "geoshape", "fill": "lightgray"},
-      "tooltip": [
-        {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-        {"field": "datum[Year_selection]", "type": "quantitative", "title": "Year"}
-      ]
+      "mark": {"type": "geoshape", "fill": "lightgray"}
     },
     {
       "data": {"url": "data/test2.csv"},
@@ -48,7 +44,6 @@
           "as": "geo"
         },
         {"calculate": "datum[Year_selection]", "as": "year_price"}
-        
       ],
       "mark": {"type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5},
       "encoding": {
@@ -56,11 +51,12 @@
         "color": {
           "field": "year_price",
           "type": "quantitative",
-          "scale": {"type": "log"}
+          "scale": {"type": "log"},
+          "legend": {"title":"Nobels Won"}
         },
         "tooltip": [
           {"field": "country", "type": "nominal", "title": "Country"},
-          {"field": "year_price", "type": "quantitative", "title": "Year"}
+          {"field": "year_price", "type": "quantitative", "title": "Nobels"}
         ]
       }
     }

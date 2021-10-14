@@ -1,64 +1,167 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Nobel Prizes Won By Each Country (1901 - 2016)",
-  "width": 600,
-  "height": 295,
-  "params": [
+  "params":[
     {
-      "name": "Year_selection",
-      "value": 2016,
-      "bind":{
-        "input": "range",
-        "min": 1901,
-        "max": 2016,
-        "step": 1,
-        "name": "Year"
+    "name": "Category_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "chemistry",
+          "economics",
+          "literature",
+          "medicine",
+          "peace",
+          "physics"
+          
+          
+        ],
+        "labels":[
+          "Show All",
+          "Chemistry",
+          "Economics",
+          "Literature",
+          "Medicine",
+          "Peace",
+          "Physics"
+        ],
+        "name": "Category Selection: "
       }
     }
   ],
-  "projection": {"type":"equirectangular"},
-  "layer":[
+  "hconcat": [
     {
-      "data": {
-        "url": "ne_110m_admin_0_countries.topojson",
-        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-      },
-
-      "mark": {"type": "geoshape", "fill": "lightgray"}
+    "title": "Portion of Nobels Prize Won By Women",
+    "width": 300,
+    "height":300,
+    "description": "Stock prices of 5 Tech Companies over Time.",
+    "data": {"url": "./data/nobels_per_decade.csv"},
+    
+    "transform": [
+      {"filter":"Category_selection == null || datum.category == Category_selection"},
+      {"calculate": "datum.portion * 100", "as": "Portion of Women"}
+    ],
+    "mark": {
+      "type": "line",
+      "point": true
     },
-    {
-      "data": {"url": "data/test2.csv"},
-      "transform": [
-        {
-          "lookup": "country",
-          "from": {
-            "data": {
-              "url": "ne_110m_admin_0_countries.topojson",
-              "format": {
-                "type": "topojson",
-                "feature": "ne_110m_admin_0_countries"
-              }
+    "encoding": {
+      "x": {"timeUnit":"year",  "field": "decade", "type": "temporal"},
+      "y": {"field": "Portion of Women", "type": "quantitative", "scale":{"domain":[0,50]}
             },
-            "key": "properties.NAME"
-          },
-          "as": "geo"
-        },
-        {"calculate": "datum[Year_selection]", "as": "year_price"}
-        
-      ],
-      "mark": {"type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5},
-      "encoding": {
-        "shape": {"field": "geo", "type": "geojson"},
-        "color": {
-          "field": "year_price",
-          "type": "quantitative"
-        }
-      },
+      "color": {"field": "category", "type": "nominal"},
       "tooltip": [
-        {"field": "properties.NAME", "type": "nominal", "title": "Country"},
-        {"field": "Total", "type": "quantitative"}
+        {"field": "decade", "type": "temporal"},
+        {"field": "Portion of Women", "type": "quantitative", "format": ","},
+        {"field": "category", "type": "nominal", "format": ","}
       ]
     }
-  ],
-  "config": {}
+    },
+    {
+      "title": "Nobel Prize Winner Age Distribution",
+      "width": 300,
+      "height":300,
+      "data": {"url": "./data/nobels_per_age.csv"},
+      "transform": [
+        {"filter":"Category_selection == null || datum.category == Category_selection"},
+        {"calculate": "datum.portion * 100", "as": "Portion of Women"}
+      ],
+      "layer": [
+        { 
+          "mark": {
+            "type": "point",
+            "filled": true
+          },
+          "encoding": {
+            "x": {
+              "timeUnit":"year",
+              "field": "year",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "age",
+              "type": "quantitative"
+            },
+            "color":{
+                "field":"category",
+                "type": "nominal",
+                "scale": {
+                  "domain": [
+                    "chemistry",
+                    "economics",
+                    "literature",
+                    "medicine",
+                    "peace",
+                    "physics"
+                ],
+                "range": [
+                  "#e41a1c",
+                  "#984ea3",
+                  "#ff7f00",
+                  "#a6cee3",
+                  "#377eb8",
+                  "#a65628"
+                ]
+              }
+            },
+            "tooltip": [
+              {"field": "category", "type": "nominal"},
+              {"field": "age", "type": "quantitative", "format": ","},
+              {"field": "year", "type": "temporal", "timeUnit":"year"}
+            ]
+    
+          }
+        },
+        {
+          "mark": {
+            "type": "line",
+            "color": "firebrick"
+          },
+          "transform": [
+            {
+              "regression": "age",
+              "on": "year"
+            }
+          ],
+          "encoding": {
+            "x": {
+              "timeUnit":"year",
+              "field": "year",
+              "type": "temporal"
+            },
+            "y": {
+              "field": "age",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "transform": [
+            {
+              "regression": "age",
+              "on": "year",
+              "params": true
+            },
+            {"calculate": "'R²: '+format(datum.rSquared, '.2f')", "as": "R2"}
+          ],
+          "mark": {
+            "type": "text",
+            "color": "firebrick",
+            "x": "width",
+            "align": "right",
+            "y": -5
+          },
+          "encoding": {
+            "text": {"type": "nominal", "field": "R2"}
+          }
+        }
+      ]
+
+
+
+    }
+    
+  ]
+
+
 }

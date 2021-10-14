@@ -8,10 +8,10 @@
 	 background-color: lightgray;
    }
    .page{
-	 width: 1150px;    
+	 width: 1250px;    
 	 background-color:rgb(136, 183, 221);   
 	 margin: auto;
-	 padding: 50px;
+	 padding: 25px;
 	 padding-top: 35px;
 	 text-align: center;
   }
@@ -43,11 +43,14 @@
 #stacked_bar_chart {
 	/*height: 1000px;
 	width: 800px;*/
+  padding-left: 3%;
 }
 
 #line_chart { 
 	/*height: 1000px;
 	width: 800px;*/
+  text-align: left;
+  padding-left: 7%;
 }
 
 #scatterplot {
