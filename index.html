@@ -25,16 +25,13 @@
 
         <div class="banner">
             <h1 class="banner-head">
-                Nobel Prizes (1901 - 2020)
+                Nobel Prizes (1901 - 2016)
             </h1>
-            <h2>
-                By Nathan Riley
-            </h2>
         </div>
 
 
         <div class="pure-g">
-            <div class="pure-u-1-1">
+            <div class="pure-u-1-1 map">
                     <div id="choropleth_map" class="vis-container"></div>
             </div>
         </div>
@@ -42,13 +39,31 @@
 
         <div class="pure-g">
             <div class="pure-u-1-1">
-              <div class="description description-left">
-                <h2>Nobel Prize Winners Throughout the World</h2>
-                <p>From 1901 to 2016 a total of <b>942 nobel prizes</b> have been awarded across 
-                   <b>89 countries</b>. 57% of these Nobels have been won by the USA (275), Germany (89), United Kingdoms (87), France (56)
-                   and Russia (31). This indicates that Nobel Prize winners predominately originate from western countries. The earliest Nobel Prize winners
-                   in 1901 were from France, Germany, Poland and the Netherlands.
-                </p>
+              <div class="description title">
+                <div class="pure-u-1-3 map_dets_left" >
+                <h2>Nobel Prizes Throughout the World</h2>
+                <b>Alfred Bernhard Nobel was the founder of the Nobel prize.</b> As the Swedish inventor of dynamite, 
+                Alfred Nobel created the Nobel prize in an attempt to alleviate the shadow of death and destruction
+                that resided over his legacy.<br><br>
+                
+                The earliest Nobel Prize winners in 1901 were from France, Germany, Poland and the Netherlands.
+                <b>From 1901 to 2016 a total of 942 Nobel prizes</b> have been <b>awarded across 89 countries</b>. 
+                57% of these Nobels have been won by the <b>USA (275), Germany (89), United Kingdoms (87), 
+                France (56) and Russia (31).</b><br><br>
+
+                 A majority of the awarded Nobel prizes have been won by western countries. 
+                 With the exception of Russia, <b>China is the country that has won the most 
+                 Nobels on the Asia continent (13).</b><br><br>  
+                </div>
+                <div class="pure-u-1-3 map_dets_right">   
+                <h2>Notable Nobel Prize Winners</h2>
+                   <b>Marie Curie:</b> First person to win two Nobels for the discovery of radioactivity (1903) and 
+                         discovery of radium and polonium (1911).<br><br>
+                   <b>Albert Einstein:</b> Nobel prize in Physics (1921) discovering the cause of the photoelectric effect.<br><br>
+                   <b>Alexander Fleming:</b> Nobel in Medicine (1945) discovery of penicillin.<br><br>
+                   <b>Watson, Crick & Wilkins:</b> Nobel in Medicine (1962) discovery of DNA helix shape.<br><br>
+                   <b>Martin Luthor King Jr.:</b> Nobel in Peace (1964) work to end racial discrimination in the United States through nonviolent means.<br><br>
+                </div>
               </div>
             </div>
         </div>
@@ -66,37 +81,39 @@
 
         <div class="pure-g">
             <div class="pure-u-1-3">
-                <div class="description description-left">
+                <div class="description description-control">
                   <h2>Nobel Prizes By Category</h2>
-                  <p>The most awarded nobels prizes are those of medicine, physics and chemistry. 
-                     In all nobel prizes categories the awards have been predominatly awarded to men.
-                     With only 50 nobel prizes being award to women across the history of the award.
-
+                  <p><b>The most awarded Nobels prizes are those of medicine (227), physics (222) and chemistry (194).</b> 
+                     In all Nobel prizes categories, the awards have been predominately awarded to men.
+                     With only 50 Nobel prizes being award to women across the history of the award. <b>This amounts to
+                     only 5.3% of Nobel Prize winners.</b>
                   </p>
                 </div>
             </div>
             <div class="pure-u-1-3">
-                <div class="description description-left">
+                <div class="description description-control">
                   <h2>Gender Imbalance</h2>
-                  <p>From 1901 to 1990 women made up less than 25% of all Nobel Prize winners in 
-                     all categories. After 1990 the portion of female winners is still disproportionate 
-                     in physics, chemistry, economics and medicine.   
+                  <p><b>From 1901 to 1990 women made up less than 25% of all Nobel prize winners for each decade.</b>
+                     After 1990 the portion of female winners is still disproportionate in physics, chemistry, economics and medicine.
+                     <b>The only categories that have seen this percentage increase as of the 1990s are literature (30%) and peace (50%).</b>    
                   </p>
                 </div>
               </div>
             <div class="pure-u-1-3">
-                <div class="description description-left">
+                <div class="description description-control">
                   <h2>Age Distribution</h2>
                   <p>There is a minimal trend in the age distribution of Nobel prize winners.
-                     The youngest person to recieve a nobel prize was 17 and won it in the category of peace.
-                     While the oldest winner was 90 and won it in the category of economics. </p>
+                     <b>The youngest ever winner was Malala Yousafzai age 17, awarded in the peace category.</b>
+                     This Nobel is likely the reason that peace is the only category with a decreasing trend line. 
+                     <b>In contrast, the oldest winner was Leonid Hurwicz age 90 in the economics category.</b></p>
                 </div>
             </div>
         </div>
 
         <div class="pure-g">
             <div class="pure-u-1-1 small-font">
-              <p>This visualisation is created by <a href="https://github.com/KadekSatriadi" target="_blank">Kadek Satriadi</a>. The datasource is <a href="#"" target="_blank">some data repository online</href>.</p>
+              <p>This visualisation is created by <a href="https://github.com/nril0001" target="_blank">Nathan Riley</a>. 
+                The datasource is <a href="https://www.kaggle.com/rishidamarla/nobel-prize-winners-19002020" target="_blank">Kaggle Nobel Prizes</href>.</p>
             </div>
         </div>
 
@@ -105,7 +122,6 @@
         var spec1 = "choropleth_map.vg.json"
         var spec2 = "stacked_barchart.vg.json"
         var spec3 = "line_chart.vg.json"
-        var spec4 = "scatterplot.vg.json"
 
         vegaEmbed('#choropleth_map', spec1, {"actions":false}).then(function(result) {
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
@@ -119,9 +135,6 @@
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
         }).catch(console.error);
 
-        vegaEmbed('#scatterplot', spec4, {"actions":false}).then(function(result) {
-            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-        }).catch(console.error);
     </script>
 
     </div>

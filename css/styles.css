@@ -4,6 +4,9 @@
   h1{
 	font-weight: 900;
   }
+  .banner{
+    text-align: center;
+  }
    body{
 	 background-color: lightgray;
    }
@@ -13,7 +16,7 @@
 	 margin: auto;
 	 padding: 25px;
 	 padding-top: 35px;
-	 text-align: center;
+	 text-align: left;
   }
   .vis-container{
 	width: 100%;
@@ -21,17 +24,41 @@
   .description h2, h1{
 	margin-top:0px;
   }
-  .description-right {
-	padding-left: 20px;
-  }
-  .description-left{
-	padding-right: 20px;
+  .description-control {
+  padding-top: 3%;
+	margin-left: 8%;
+  margin-right: 8%;
+  text-align: center;
   }
   .pure-g{
 	margin-bottom: 25px;
+  margin-top: 25px;
   }
   .small-font{
 	  font-size: 14px;
+    text-align: center;
+  }
+  .title{
+    text-align: center;
+    margin-bottom: 5px;
+    
+  }
+  .map{
+    padding-top: 15px;
+    text-align: center;
+  }
+  .map_dets_left{
+    padding-left: 20px;
+    padding-top: 5px;
+    margin-right: 5%;
+    text-align: left;
+    margin-bottom: 1.5%;
+  }
+  .map_dets_right{
+    padding-left: 5px;
+    padding-top: 5px;
+    text-align: left;
+    margin-bottom: 1.5%;
   }
 
 #choropleth_map {
@@ -43,17 +70,13 @@
 #stacked_bar_chart {
 	/*height: 1000px;
 	width: 800px;*/
-  padding-left: 3%;
+  padding-left: 1.5%;
 }
 
 #line_chart { 
 	/*height: 1000px;
 	width: 800px;*/
   text-align: left;
-  padding-left: 7%;
+  padding-left: 6%;
 }
 
-#scatterplot {
-	/*height: 1000px;
-	width: 800px;*/
-}

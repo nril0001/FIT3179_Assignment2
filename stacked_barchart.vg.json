@@ -1,18 +1,47 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Nobel Prizes by Category",
-    "data": {"url": "./data/no_per_category.csv"},
-    "width": 325,
-    "height": 275,
-    "mark": "bar",
-    "encoding": {
-      "x": {"field": "category"},
-      "y": {"aggregate": "count", "field": "gender"},
-      "order": {"aggregate": "count", "field": "gender", "sort": "descending"},
-      "color": {"field": "gender", "legend": {"title":"Gender"}},
-      "tooltip": [
+  "title": "Nobel Prizes by Category",
+  "width": 325,
+  "height": 284,
+
+  "data": {"url": "./data/num_per_category.csv"},
+  
+  "mark": "bar",
+
+  "encoding": {
+    "x": {
+      "field": "category", 
+      "title":""},
+
+    "y": {
+      "aggregate": "count", 
+      "field": "gender",
+      "title":"Number of Nobel Prizes"},
+
+    "order": {
+      "aggregate": "count", 
+      "field": "gender", 
+      "sort": "descending"},
+
+    "color": {
+      "field": "gender", 
+      "legend": {"title":"Gender"},
+      "scale":{
+        "domain":[
+          "male",
+          "female",
+          "org"
+        ],
+        "range": [
+          "#4A60D7",
+          "#EC3B86",
+          "#A4F43D"
+        ]
+      }
+    },
+
+    "tooltip": [
         {"field": "gender", "type": "nominal", "title": "Gender"},
-        {"field": "y", "type": "quantitative", "title": "Number of Nobels"}
+        {"aggregate":"count", "field": "gender", "type": "quantitative", "title": "Number of Nobels"}
       ]
     }
 }
